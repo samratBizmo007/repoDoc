@@ -1,0 +1,273 @@
+<?php
+namespace App\Model\Table;
+
+use Cake\ORM\Table;
+use Cake\Validation\Validator;
+use Cake\Core\Configure;
+use Cake\ORM\RulesChecker;
+use Cake\ORM\TableRegistry;
+
+use App\Model\Table\AppTable;
+
+/**
+ * PatientServiceTeams Model
+ *
+ * @property \Cake\ORM\Association\BelongsTo $Employees
+ *
+ * @method \App\Model\Entity\PatientServiceTeam get($primaryKey, $options = [])
+ * @method \App\Model\Entity\PatientServiceTeam newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\PatientServiceTeam[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\PatientServiceTeam|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\PatientServiceTeam patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\PatientServiceTeam[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\PatientServiceTeam findOrCreate($search, callable $callback = null, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ */
+class PatientServiceTeamsTable extends AppTable
+{
+
+    /**
+     * Initialize method
+     *
+     * @param array $config The configuration for the Table.
+     * @return void
+     */
+    public function initialize(array $config)
+    {
+        parent::initialize($config);
+        
+        $this->primaryKey('id');
+
+        $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Patients', [
+            'foreignKey' => 'patient_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
+        ]);
+        
+        $this->belongsTo('ServiceTeams', [
+            'foreignKey' => 'service_team_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
+        ]);
+    }
+
+    /**
+     * Default validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->integer('id')
+            ->allowEmpty('id', 'create');
+
+        /* $validator
+            ->requirePresence('patient_id', 'create')
+            ->notEmpty('employee_id'); */
+
+        $validator
+            ->requirePresence('service_team_id', 'create')
+            ->notEmpty('service_team_id');
+
+        return $validator;
+    }
+    
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['patient_id'], 'Patients'));
+        $rules->add($rules->existsIn(['service_team_id'], 'ServiceTeams'));
+    
+        return $rules;
+    }
+    
+    public function getServiceTeamPatientLists($hospitalId, $serviceTeamId, $employeeId, $sortParam) {
+        
+        $condition = [
+            'PatientServiceTeams.hospital_id' => $hospitalId,
+            'PatientServiceTeams.service_team_id' => $serviceTeamId,
+            'Patients.discharge !=' => 1
+        ];
+        
+        $this->employeesPatients = TableRegistry::get('EmployeesPatients');
+        
+        $deletePatients = $this->employeesPatients->getEmployeePatients($employeeId);
+        
+        $patiConditions = [
+            'status' => 1
+        ];
+        if(!empty($deletePatients)) {
+            $patiConditions += [
+                'Patients.id NOT IN' => $deletePatients
+            ];
+        }
+        
+        /* if(!empty($hospitalId)  && $hospitalId > 0) {
+            $condition += [ 'PatientServiceTeams.hospital_id' => $hospitalId ];
+        }
+        
+        if(!empty($serviceTeamId) && $serviceTeamId > 0) {
+            $condition += ['PatientServiceTeams.service_team_id' => $serviceTeamId ];
+        } */
+        $this->PatientsBed = TableRegistry::get('PatientsBed');
+        $result = $this->find('all')
+            ->select([
+                'id',
+                'patient_id',
+                'service_team_id',
+            ])
+            ->contain(['Patients' => function($q) use ($patiConditions) {
+                return $q
+                    ->select([
+                        'id',
+                        'firstname',
+                        'lastname',
+                        'photo',
+                        'mrn',
+                        'room',
+                        'bed',
+                        'group_id'
+                    ])
+                    ->where($patiConditions);
+                },
+            ])
+            ->where($condition)
+            ->all()
+            ->toArray();
+        
+        $patients = [];
+        $i = 0;
+        if(!empty($result)) {
+            foreach ($result as $key => $val) {
+                if(!empty($val->patient)) {
+                    $patients[$i]['id'] = $val->patient_id;
+                    $patients[$i]['first_name'] = !empty($val->patient->firstname) ? $val->patient->firstname : '';
+                    $patients[$i]['last_name'] = !empty($val->patient->lastname) ? $val->patient->lastname : '';
+                    $patients[$i]['photo'] =  Configure::read('DEFAULT_PATIENT_IMAGE_URL');
+                    $patients[$i]['mrn'] =  !empty($val->patient->mrn) ? $val->patient->mrn : '';
+                    $bedData = $this->PatientsBed->getPatientsBed($val->patient_id);
+                    $patients[$i]['pat_room'] =  !empty($bedData["room_number"]) ? $bedData["room_number"] : 0;
+                    $patients[$i]['pat_bed'] =  !empty($bedData["bed_number"]) ? $bedData["bed_number"] : 0;
+                    $roomBad = (!empty($bedData["room_number"])  && !empty($bedData["bed_number"])) ?  $bedData["room_number"].'-'.$bedData["bed_number"] : ( !empty($bedData["room_number"]) ? $bedData["room_number"] : (!empty($bedData["bed_number"]) ? $bedData["bed_number"] : ''));
+                    $patients[$i]['bed'] =  $roomBad;
+                    //$patients[$i]['bed'] =  !empty($val->patient->bed) ? $val->patient->bed : '';
+                    $patients[$i]['group_id'] = !empty($val->patient->group_id) ? $val->patient->group_id : '';
+                    $i++;
+                }
+            }
+        }
+        
+        $this->EmployeesPatients = TableRegistry::get('EmployeesPatients');
+        
+        $patientsData = $this->EmployeesPatients->find('all')
+            ->select([
+                'id',
+                'employee_id',
+                'patient_id'
+            ])
+            ->contain(['Patients' => function($q) {
+                return $q
+                    ->select([
+                        'id',
+                        'firstname',
+                        'lastname',
+                        'photo',
+                        'mrn',
+                        'room',
+                        'bed',
+                        'group_id'
+                    ])
+                    ->where(['status' => 1]);
+                },
+            ])
+            ->find('all')
+            ->where([
+                'EmployeesPatients.employee_id' => $employeeId,
+                'EmployeesPatients.is_deleted' => 0
+            ])
+            ->toArray();
+        
+        if(!empty($patientsData)) {
+            foreach ($patientsData as $key => $val) {
+                $patients[$i]['id'] = $val->patient_id;
+                $patients[$i]['first_name'] = !empty($val->patient->firstname) ? $val->patient->firstname : '';
+                $patients[$i]['last_name'] = !empty($val->patient->lastname) ? $val->patient->lastname : '';
+                $patients[$i]['photo'] =  Configure::read('DEFAULT_PATIENT_IMAGE_URL');
+                $patients[$i]['mrn'] =  !empty($val->patient->mrn) ? $val->patient->mrn : '';
+                $bedData = $this->PatientsBed->getPatientsBed($val->patient_id);
+                $patients[$i]['pat_room'] =  !empty($bedData["room_number"]) ? $bedData["room_number"] : 0;
+                $patients[$i]['pat_bed'] =  !empty($bedData["bed_number"]) ? $bedData["bed_number"] : 0;
+                $roomBad = (!empty($bedData["room_number"])  && !empty($bedData["bed_number"])) ?  $bedData["room_number"].'-'.$bedData["bed_number"] : ( !empty($bedData["room_number"]) ? $bedData["room_number"] : (!empty($bedData["bed_number"]) ? $bedData["bed_number"] : ''));
+                $patients[$i]['bed'] =  $roomBad;
+                    
+                //$patients[$i]['bed'] =  !empty($val->patient->bed) ? $val->patient->bed : '';
+                $patients[$i]['group_id'] = !empty($val->patient->group_id) ? $val->patient->group_id : '';
+                $i++;
+            }
+        }    
+        
+        // Sort patient base on room and bad number
+        if(!empty($patients)) {
+            $sort = array();
+            $patients = array_map("unserialize", array_unique(array_map("serialize", $patients)));
+            foreach($patients as $k=>$v) {
+                if($sortParam == 1) {
+                    $sort['pat_room'][$k] = $v['pat_room'];
+                    $sort['pat_bed'][$k] = $v['pat_bed'];
+                } else {
+                    $sort['name'][$k] = $v['name'];
+                }
+            }
+            
+            if($sortParam == 1) {
+                array_multisort($sort['pat_room'], SORT_ASC, $sort['pat_bed'], SORT_ASC,$patients);
+            } else {
+                array_multisort($sort['name'], SORT_ASC,$patients);
+            }
+        }
+        return $patients;
+     }
+    
+    public function getEmployees($hospitalId, $teamId) {
+        $result = $this->find('all')
+            ->select(['employee_id'])
+            ->where(['service_team_id' => $teamId, 'hospital_id' => $hospitalId ])
+            ->order('employee_id')
+            ->all()
+            ->toArray();
+        
+        $newArr = [];
+        if(!empty($result)) {
+            $i = 0;
+            foreach ($result as $key => $val) {
+                $newArr[$val->employee_id]['memberId'] = (string)$val->employee_id;
+                $newArr[$val->employee_id]['isAdmin'] = false;
+                $i++;
+            }
+        }
+       return $newArr;
+    }
+    
+    public function getPatientServiceTeam($patient_id) {
+        return $this->find('list', ['keyField' => 'id','valueField' =>'id'])->where([ 'patient_id' => $patient_id ])->toArray();
+    }
+    
+    public function getPatientServiceTeamIds($patient_id) {
+        return $this->find('list', ['keyField' => 'service_team_id','valueField' =>'service_team_id'])->where([ 'patient_id' => $patient_id ])->toArray();
+    }
+    
+    public function getServiceTeamPatientIds($teamId) {
+        return $this->find('list', ['keyField' => 'patient_id','valueField' =>'patient_id'])->where([ 'service_team_id' => $teamId, ])->toArray();
+    } 
+}

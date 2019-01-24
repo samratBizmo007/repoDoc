@@ -1,0 +1,134 @@
+10
+
+dir
+2006
+https://192.168.1.123:8088/svn/HemangTeam/Daily_Doc/Source/Web/plugins/Admin/webroot/plugins
+https://192.168.1.123:8088/svn/HemangTeam
+
+
+
+2018-03-31T07:51:33.597835Z
+1923
+NareshKothiya
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+9e89177f-01c5-1c45-ad99-8d178143fcd3
+
+
+
+
+
+
+0
+
+bootstrap-confirmation
+dir
+
+bootstrap-slider
+dir
+
+bootstrap-switch
+dir
+
+bootstrap-wysihtml5
+dir
+
+cakephp-ajax-pagination
+dir
+
+chartjs
+dir
+
+ckeditor
+dir
+
+colorpicker
+dir
+
+datatables
+dir
+
+datepicker
+dir
+
+daterangepicker
+dir
+
+fastclick
+dir
+
+flot
+dir
+
+font-awesome
+dir
+
+fullcalendar
+dir
+
+highchart
+dir
+
+iCheck
+dir
+
+input-mask
+dir
+
+intl-tel-input
+dir
+
+ionicons
+dir
+
+ionslider
+dir
+
+jQuery
+dir
+
+jQueryUI
+dir
+
+jquery-validation
+dir
+
+jvectormap
+dir
+
+knob
+dir
+
+morris
+dir
+
+pace
+dir
+
+select2
+dir
+
+slimScroll
+dir
+
+sparkline
+dir
+
+timepicker
+dir
+
+toastr
+dir
+

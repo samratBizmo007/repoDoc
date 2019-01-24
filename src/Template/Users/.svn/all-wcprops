@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Template/Users
+END
+add.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/HemangTeam/!svn/ver/2554/Daily_Doc/Source/Web/src/Template/Users/add.ctp
+END
+index.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/HemangTeam/!svn/ver/2541/Daily_Doc/Source/Web/src/Template/Users/index.ctp
+END
+change_password_employee.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/HemangTeam/!svn/ver/2541/Daily_Doc/Source/Web/src/Template/Users/change_password_employee.ctp
+END
+reset_password_message.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/HemangTeam/!svn/ver/2541/Daily_Doc/Source/Web/src/Template/Users/reset_password_message.ctp
+END
+send_otp.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/HemangTeam/!svn/ver/2550/Daily_Doc/Source/Web/src/Template/Users/send_otp.ctp
+END
+view.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/HemangTeam/!svn/ver/2542/Daily_Doc/Source/Web/src/Template/Users/view.ctp
+END
+login.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/HemangTeam/!svn/ver/2541/Daily_Doc/Source/Web/src/Template/Users/login.ctp
+END
+edit.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/HemangTeam/!svn/ver/2559/Daily_Doc/Source/Web/src/Template/Users/edit.ctp
+END
+export_lists.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Template/Users/export_lists.ctp
+END
+change_password.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/HemangTeam/!svn/ver/2541/Daily_Doc/Source/Web/src/Template/Users/change_password.ctp
+END

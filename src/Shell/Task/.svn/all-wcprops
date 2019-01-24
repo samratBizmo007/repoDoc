@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Shell/Task
+END
+DischargePatientTask.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/HemangTeam/!svn/ver/2581/Daily_Doc/Source/Web/src/Shell/Task/DischargePatientTask.php
+END
+EmployeeScheduleTask.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Shell/Task/EmployeeScheduleTask.php
+END
+UrgentMessageTask.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/HemangTeam/!svn/ver/2510/Daily_Doc/Source/Web/src/Shell/Task/UrgentMessageTask.php
+END
+UrgentMessageTask_bkp.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/HemangTeam/!svn/ver/2510/Daily_Doc/Source/Web/src/Shell/Task/UrgentMessageTask_bkp.php
+END
+ScheduleMessageTask.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/HemangTeam/!svn/ver/2510/Daily_Doc/Source/Web/src/Shell/Task/ScheduleMessageTask.php
+END
+RemindChangePasswordTask.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/HemangTeam/!svn/ver/2510/Daily_Doc/Source/Web/src/Shell/Task/RemindChangePasswordTask.php
+END

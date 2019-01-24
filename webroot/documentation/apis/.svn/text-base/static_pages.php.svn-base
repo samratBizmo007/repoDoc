@@ -1,0 +1,72 @@
+<h1 id="static_pages">Static Pages</h1>
+							<!-- API URL -->
+							<div class="bs-callout bs-callout-info">
+								<h4><?php echo $DOC_URL ?>myPatientSignoutNotes.json</h4>
+							</div>
+							<!-- REQUEST RESPONSE FORMAT -->
+							<div class="highlight boderleft">
+								<h4 class="colorblue">Supported Formats</h4>  
+								<code class="colorblue">JSON</code>
+								<code class="colorblue">XML</code>
+								<br><br>
+								<p class="colorred">*Default Response is in JSON</p>
+							</div>
+
+							<!-- REQUEST METHOD -->
+							<h3 id="type21">Type</h3>
+							<div class="bs-callout bs-callout-info">
+								<h4>Type : <code>POST</code></h4>
+							</div>
+
+							<!-- REQUEST PARAMETERS -->
+							<h3 id="input21">Input</h3>
+							<div class="highlight boderleft">
+								<pre >
+									<code class="html">
+{
+	"page_id" : "1"
+}
+   											
+									</code>
+									<p class="colorred">* REQUEST PARAMETERS</p>
+								</pre>
+						 	</div>
+
+						 	<!-- RESPONSE -->
+							<h3 id="output21">Output</h3>
+							<div class="highlight boderleft">
+								<h4 class="colorblue">success</h4>
+								<pre >
+									<code class="html">
+{
+  "status": 200,
+  "message": "Success",
+  "data": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker.</p>\r\n <br>\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). </p> <br>\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p> <br>\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p> <br>\r\n <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker.</p>"
+}
+
+									</code>
+								</pre>
+						 	</div>
+
+						 	<br>
+
+						 	<div class="bs-callout bs-callout-danger">
+								<h4 class="colorred">Bad Response</h4>
+								<pre style="background-color:inherit;border:none;">
+{
+  "status": 403,
+  "message": "Forbidden! You don't have permission to access this url."
+}
+
+{
+  "status": 400,
+  "message": "Insufficient parameters have been passed."
+}
+
+{
+  "status": 500,
+  "message": "Oops ! Something went wrong."
+}
+									<p class="colorred">* MESSAGE Showing Cause OF Issue In Human Readable Format</p>
+								</pre>
+					 		</div>

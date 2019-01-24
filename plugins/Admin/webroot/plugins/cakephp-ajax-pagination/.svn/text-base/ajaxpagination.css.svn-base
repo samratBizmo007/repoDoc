@@ -1,0 +1,1 @@
+.paginator-load{display:none;margin-top:7px;position:absolute;width:100%}.paginator-load span{background-image:url(loader.gif);height:32px;width:32px;display:block;margin:0 auto;background-position:center center;background-repeat:no-repeat;background-size:cover}

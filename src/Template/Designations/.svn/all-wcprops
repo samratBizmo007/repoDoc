@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Template/Designations
+END
+add.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Template/Designations/add.ctp
+END
+index.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Template/Designations/index.ctp
+END
+view.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Template/Designations/view.ctp
+END
+edit.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Template/Designations/edit.ctp
+END
+import_csv.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Template/Designations/import_csv.ctp
+END

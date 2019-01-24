@@ -1,0 +1,17 @@
+.text-black{
+	color: #000000;
+}
+.text-red{
+	color: #f8353e;	
+}
+.lower {
+   text-transform: lowercase;
+}
+
+.modal-sm.modal-sm-450 {
+    width: 450px;
+}
+
+.no-margin{
+	margin: 0 !important;
+}

@@ -1,0 +1,133 @@
+$theme-color                : #31aefe;
+$theme-color-dark           : #019dfe;
+$theme-color-light          : #017ecb;
+$theme-font                 : 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+$theme-red                  : #f20505;
+$theme-grey-background      : #49729B;
+$theme-grey-background-dark : #234A72;
+
+$image-container-size : 500px;
+$light-grey           :#4d4d4d;
+
+/* SIZE */
+$large_2K   : 2559px;
+$large_K    : 1919px;
+$xxl        : 1599px;
+$xl         : 1439px;
+$large      : 1199px;
+$medium     : 991px;
+$small      : 767px;
+$mini       : 550px;
+$micro      : 415px;
+
+
+/* functions */
+
+@mixin animation-duration($duration) {
+    -webkit-animation-duration : $duration;
+       -moz-animation-duration : $duration;
+            animation-duration : $duration;
+}
+@mixin animation-iteration-count($count) {
+    -webkit-animation-iteration-count : $count;
+       -moz-animation-iteration-count : $count;
+            animation-iteration-count : $count;
+}
+@mixin animation-timing-function($timing) {
+    -webkit-animation-timing-function : $timing;
+       -moz-animation-timing-function : $timing;
+            animation-timing-function : $timing;
+}
+@mixin animation-fill-mode($mode) {
+    -webkit-animation-fill-mode : $mode;
+       -moz-animation-fill-mode : $mode;
+            animation-fill-mode : $mode;
+}
+@mixin animation-name($name) {
+    -webkit-animation-name : $name;
+       -moz-animation-name : $name;
+         -o-animation-name : $name;
+            animation-name : $name;
+}
+@mixin animation($name) {
+    -webkit-animation : $name;
+       -moz-animation : $name;
+         -o-animation : $name;
+            animation : $name;
+}
+
+@mixin border-radius($radius) {
+    -webkit-border-radius : $radius;
+       -moz-border-radius : $radius;
+        -ms-border-radius : $radius;
+            border-radius : $radius;
+}
+
+@mixin back-grad-linear($grad...) {
+    background: -webkit-linear-gradient($grad);
+    background:    -moz-linear-gradient($grad);
+    background:      -o-linear-gradient($grad);
+    background:         linear-gradient($grad);
+
+}
+
+@mixin box-shadow($amount...) {
+    -webkit-box-shadow : $amount;
+       -moz-box-shadow : $amount;
+        -ms-box-shadow : $amount;
+         -o-box-shadow : $amount;
+            box-shadow : $amount;
+}
+
+
+@mixin transform($value...) {
+    -webkit-transform : $value;
+            transform : $value;
+}
+@mixin rtlTransform($value) {
+    html[dir="rtl"] &
+    {
+        -webkit-transform : $value;
+                transform : $value;
+    }
+}
+@mixin transition($value...) {
+    -webkit-transition  : $value;
+	   -moz-transition  : $value;
+	    -ms-transition  : $value;
+	     -o-transition  : $value;
+	        transition  : $value;
+}
+@mixin transition-delay($value) {
+    -webkit-transition-delay : $value;
+            transition-delay : $value;
+}
+@mixin resp($media) {
+    @media(max-width:$media)
+    {
+      @content;
+    }
+}
+@mixin resp-min($media) {
+    @media(min-width:$media)
+    {
+      @content;
+    }
+}
+@mixin rtl() {
+    html[dir="rtl"] &
+    {
+      @content;
+    }
+}
+@mixin place-on-circle( $angle, $largeScreen, $smallScreen, $miniScreen) {
+    @include transform( rotate($angle+deg) translate(($largeScreen)/2 ) rotate(((-1)*$angle)+deg) );
+
+    @include resp($xl){
+        @include transform( rotate($angle+deg) translate(($smallScreen)/2 ) rotate(((-1)*$angle)+deg) );
+    }
+
+    @include resp($mini){
+        @include transform( rotate($angle+deg) translate(($miniScreen)/2 ) rotate(((-1)*$angle)+deg) );
+    }
+}

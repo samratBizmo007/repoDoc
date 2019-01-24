@@ -1,0 +1,34 @@
+department,subdepartment,is_first_call_attending,Time,Timezone,1-Oct,2-Oct,3-Oct,4-Oct,5-Oct,6-Oct,7-Oct,8-Oct,9-Oct,10-Oct,11-Oct,12-Oct,13-Oct,14-Oct,15-Oct,16-Oct,17-Oct,18-Oct,19-Oct,20-Oct,21-Oct,22-Oct,23-Oct,24-Oct,25-Oct,26-Oct,27-Oct,28-Oct,29-Oct,30-Oct,31-Oct
+Cardiology,General Cardiology,First Call,8a-5p,Asia/Kolkata,"
+naresh@openxcell.com","
+naresh@openxcell.com","
+naresh@openxcell.com","
+naresh@openxcell.com","
+naresh@openxcell.com","
+naresh@openxcell.com","
+naresh@openxcell.com","
+naresh@openxcell.com","
+naresh@openxcell.com","
+naresh@openxcell.com","
+naresh@openxcell.com","
+naresh@openxcell.com","
+naresh@openxcell.com","
+naresh@openxcell.com","
+naresh@openxcell.com",briansturner@teleworm.us,briansturner@teleworm.us,briansturner@teleworm.us,briansturner@teleworm.us,briansturner@teleworm.us,briansturner@teleworm.us,briansturner@teleworm.us,briansturner@teleworm.us,briansturner@teleworm.us,briansturner@teleworm.us,briansturner@teleworm.us,briansturner@teleworm.us,briansturner@teleworm.us,briansturner@teleworm.us,briansturner@teleworm.us,briansturner@teleworm.us
+Cardiology,General Cardiology,Attending,8a-5p,Asia/Kolkata,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com,kkhot@gmail.com
+Cardiology,Interventional Cardiology,Attending,8a-5p,Asia/Kolkata,kkhot@gmail.com,kkhot@gmail.com,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Cardiology,Interventional Cardiology,Attending,,Asia/Kolkata,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Cardiology,Electrophysiology,First Call,,Asia/Kolkata,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Cardiology,Electrophysiology,Attending,,Asia/Kolkata,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Cardiology,Heartfailure And Transplant,First Call,,Asia/Kolkata,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Cardiology,Heartfailure And Transplant,Attending,,Asia/Kolkata,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Cardiology,Pulmonary Hypertension,First Call,,Asia/Kolkata,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Cardiology,Pulmonary Hypertension,Attending,,Asia/Kolkata,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Cardiology,Echo Lab,First Call,,Asia/Kolkata,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Cardiology,Echo Lab,Attending,,Asia/Kolkata,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Cardiology,Pulmonary Hypertension,First Call,,Asia/Kolkata,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Pulmonary Hypertension,Attending,,Asia/Kolkata,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Family Medicine,,First Call,8a-5p,Asia/Kolkata,kbk_96@yahoo.com,kbk_96@yahoo.com,kbk_96@yahoo.com,kbk_96@yahoo.com,kbk_96@yahoo.com,kbk_96@yahoo.com,,,,,,,,,,,,,,,,,,,,,,,,,
+Family Medicine,,Attendng,,Asia/Kolkata,fmw@gmailcom,fmw@gmailcom,fmw@gmailcom,fmw@gmailcom,fmw@gmailcom,fmw@gmailcom,,,,,,,,,,,,,,,,,,,,,,,,,
+Geriatric Medicine,,First Call,,Asia/Kolkata,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Geriatric Medicine,,Attendng,,Asia/Kolkata,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

@@ -1,0 +1,106 @@
+<h1 id="login">Login</h1>
+							<!-- API URL -->
+							<div class="bs-callout bs-callout-info">
+								<h4><?php echo $DOC_URL ?>login.json</h4>
+							</div>
+							<!-- REQUEST RESPONSE FORMAT -->
+							<div class="highlight boderleft">
+								<h4 class="colorblue">Supported Formats</h4>  
+								<code class="colorblue">JSON</code>
+								<code class="colorblue">XML</code>
+								<br><br>
+								<p class="colorred">*Default Response is in JSON</p>
+							</div>
+
+							<!-- REQUEST METHOD -->
+							<h3 id="type1">Type</h3>
+							<div class="bs-callout bs-callout-info">
+								<h4>Type : <code>POST</code></h4>
+							</div>
+
+							<!-- REQUEST PARAMETERS -->
+							<h3 id="input1">Input</h3>
+							<div class="highlight boderleft">
+								<pre >
+									<code class="html">
+{
+    "email" : "gladysrperlman@teleworm.us"
+    "password" : "123456"
+    "build_version" : "1.0.0"
+    "device_type" : "1"
+    "device_token" : "7802773b5b3f46f5469853a268a0bb8c1493287522"
+}
+									</code>
+									<p class="colorred">* REQUEST PARAMETERS</p>
+									<p class="colorred">* No header is required.</p>
+								</pre>
+						 	</div>
+
+						 	<!-- RESPONSE -->
+							<h3 id="output1">Output</h3>
+							<div class="highlight boderleft">
+								<h4 class="colorblue">success</h4>
+								<pre >
+									<code class="html">
+{
+  "status": 200,
+  "message": "Success",
+  "data": {
+    "id": 4,
+    "password": "$2y$10$ma4tU6d9ysa9qndgns2uXOTLsQe4EEq9Wqsr/hIbdq0ioeS0rdZOC",
+    "email": "gladysrperlman@teleworm.us",
+    "firstname": "Gladys",
+    "lastname": "Perlman",
+    "employee_role": "Doctor",
+    "designation": "Hand",
+    "department": "Eye",
+    "title": "Hand",
+    "qualification": "MBBS",
+    "photo": "http://localhost/daily_doc/img/employees/original/591ede1c25b64.jpg",
+    "office_number": "9876543210",
+    "cell_number": "987654310",
+    "fax_number": "9876543210",
+    "working_time": "",
+    "app_token": "190486812f7957a1ab698a09d134d9711496136698",
+    "availability_status": 1,
+    "status": true,
+    "hospital_employees": [
+      {
+        "employee_id": 4,
+        "hospital_id": 1,
+        "service_team_id": 2
+      }
+    ],
+    "employee_id": 4,
+    "device_token": "7802773b5b3f46f5469853a268a0bb8c1493287522",
+    "device_type": "1",
+    "build_version": "1.0.0",
+    "modified": "2017-05-30T09:31:38+00:00",
+    "photo_thumb": "http://localhost/daily_doc/img/employees/thumbs/http://localhost/daily_doc/img/employees/original/591ede1c25b64.jpg"
+  }
+}
+
+									</code>
+								</pre>
+						 	</div>
+
+						 	<br>
+
+						 	<div class="bs-callout bs-callout-danger">
+								<h4 class="colorred">Bad Response</h4>
+								<pre style="background-color:inherit;border:none;">
+{
+  "status": 401,
+  "message": "Invalid credentials have been passed."
+}
+{
+    "status": "500",
+    "message": "Your account is inactive. Contact Administrator."
+}
+{
+  "status": 400,
+  "message": "Insufficient parameters have been passed."
+}
+									<p class="colorred">* MESSAGE Showing Cause OF Issue In Human Readable Format</p>
+								</pre>
+					 		</div>

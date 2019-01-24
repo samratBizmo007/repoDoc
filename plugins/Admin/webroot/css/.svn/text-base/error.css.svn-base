@@ -1,0 +1,98 @@
+/*!
+ * Start Bootstrap - Agency v3.3.7+1 (http://startbootstrap.com/template-overviews/agency)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+@font-face {
+    font-family: 'Myriad Pro';
+    src: url('fonts/MYRIADPROREGULAR.eot');
+    src: local('MYRIADPROREGULAR'), url('fonts/MYRIADPROREGULAR.woff') format('woff'), url('fonts/MYRIADPROREGULAR.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    overflow-x: hidden;
+    font-family: "Myriad Pro", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.text-muted {
+    color: #777777;
+}
+.text-primary {
+    color: #f8353e;
+}
+p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+p.large {
+    font-size: 16px;
+}
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+    outline: none;
+}
+a {
+    color: #f8353e;
+}
+a:hover,
+a:focus,
+a:active,
+a.active {
+    color: #ee1e27;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Myriad Pro", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+}
+
+#error .content{
+    margin-top: 128px;
+}
+
+#error .content .error-image-404 {
+    background: hsla(0, 0%, 0%, 0) url("../img/errors/404.png") no-repeat scroll center center;
+    height: 249px;
+    width: 304px;
+    margin: 0 auto; 
+}
+
+#error .content .error-image-500 {
+    background: hsla(0, 0%, 0%, 0) url("../img/errors/500.png") no-repeat scroll center center;
+    height: 249px;
+    width: 304px;
+    margin: 0 auto; 
+}
+
+#error .content{
+    margin-top: 128px;
+}
+
+.error-title{
+    margin-top: 25px;
+    color: #f8353e;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.error-message{
+    color: #757575;
+    font-size: 17px;
+    margin: 15px auto 30px;
+    text-align: center;
+}
+
+.back-link a{
+    color: #f8353e;
+    font-weight: 700;
+    font-size: 17px;
+}

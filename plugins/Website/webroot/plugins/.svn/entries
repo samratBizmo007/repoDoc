@@ -1,0 +1,117 @@
+10
+
+dir
+2006
+https://192.168.1.123:8088/svn/HemangTeam/Daily_Doc/Source/Web/plugins/Website/webroot/plugins
+https://192.168.1.123:8088/svn/HemangTeam
+
+
+
+2018-04-11T10:05:44.265132Z
+2003
+KaushalHada
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+9e89177f-01c5-1c45-ad99-8d178143fcd3
+
+bootstrap
+dir
+
+font-awesome
+dir
+
+jquery
+dir
+
+jquery-easing
+dir
+
+jquery-validation
+dir
+
+jquery.infinitescroll.js
+file
+
+
+
+
+2018-04-11T10:40:22.000000Z
+4cea1947b9fe0bbad1d544f47ae1d103
+2018-04-11T10:05:44.265132Z
+2003
+KaushalHada
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15114
+
+jquery.min.js
+file
+
+
+
+
+2018-04-11T10:40:22.000000Z
+473957cfb255a781b42cb2af51d54a3b
+2018-04-11T10:05:44.265132Z
+2003
+KaushalHada
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+86663
+
+magnific-popup
+dir
+
+scrollreveal
+dir
+

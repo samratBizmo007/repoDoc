@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Template/EmployeeRoles
+END
+add.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Template/EmployeeRoles/add.ctp
+END
+index.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Template/EmployeeRoles/index.ctp
+END
+view.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Template/EmployeeRoles/view.ctp
+END
+edit.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Template/EmployeeRoles/edit.ctp
+END
+import_csv.ctp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/src/Template/EmployeeRoles/import_csv.ctp
+END

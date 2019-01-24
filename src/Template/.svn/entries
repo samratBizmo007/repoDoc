@@ -1,0 +1,101 @@
+10
+
+dir
+2077
+https://192.168.1.123:8088/svn/HemangTeam/Daily_Doc/Source/Web/src/Template
+https://192.168.1.123:8088/svn/HemangTeam
+
+
+
+2018-04-11T10:13:04.755464Z
+2005
+KaushalHada
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+incomplete
+9e89177f-01c5-1c45-ad99-8d178143fcd3
+
+
+
+
+
+
+0
+
+Dashboard
+dir
+
+Departments
+dir
+
+Designations
+dir
+
+Element
+dir
+
+Email
+dir
+
+EmployeeRoles
+dir
+
+Employees
+dir
+
+EmployeesSchedules
+dir
+
+Error
+dir
+
+Events
+dir
+
+Floors
+dir
+
+Hospitals
+dir
+
+Layout
+dir
+
+Pages
+dir
+
+PatientHistories
+dir
+
+Patients
+dir
+
+Roles
+dir
+
+ServiceTeams
+dir
+
+Sites
+dir
+
+SubDepartments
+dir
+
+Titles
+dir
+
+Users
+dir
+

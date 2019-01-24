@@ -1,0 +1,167 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis
+END
+patient_major_events.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/patient_major_events.php
+END
+patient_signout_notes.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/patient_signout_notes.php
+END
+my_patient_followups.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/my_patient_followups.php
+END
+create_employee_plans.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/create_employee_plans.php
+END
+search_pataients.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/search_pataients.php
+END
+create_notes.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/create_notes.php
+END
+search_provider_lists.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/search_provider_lists.php
+END
+add_employee_pataients.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/add_employee_pataients.php
+END
+patient_service_team.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/patient_service_team.php
+END
+employee_detail.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/employee_detail.php
+END
+create_signout_note.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/create_signout_note.php
+END
+create_followups.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/create_followups.php
+END
+my_patient_signout_notes.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/my_patient_signout_notes.php
+END
+pataient_view_notes.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/pataient_view_notes.php
+END
+patient_handoff.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/patient_handoff.php
+END
+patient_reminders.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/patient_reminders.php
+END
+department_lists.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/department_lists.php
+END
+login.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/login.php
+END
+pataients_lists.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/pataients_lists.php
+END
+logout.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/logout.php
+END
+firstcall_attending_lists.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/firstcall_attending_lists.php
+END
+patient_followups.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/patient_followups.php
+END
+event_lists.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/event_lists.php
+END
+create_major_event.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/create_major_event.php
+END
+static_pages.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/static_pages.php
+END
+pataient_signout_notes.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/pataient_signout_notes.php
+END
+create_reminder.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/HemangTeam/!svn/ver/1923/Daily_Doc/Source/Web/webroot/documentation/apis/create_reminder.php
+END

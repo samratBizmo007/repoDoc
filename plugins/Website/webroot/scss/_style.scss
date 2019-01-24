@@ -1,0 +1,344 @@
+@import "constants.scss";
+
+section{
+    @include resp($medium)  {padding: 5rem 0;}
+    @include resp($micro)   {padding: 3rem 0;}
+}
+
+h2{
+    @include resp($small)   {font-size: 28px;}
+    @include resp($micro)   {font-size: 26px;}
+}
+
+nav#mainNav{
+    .navbar-brand{
+        img{
+            display         : inline-block;
+            height          : 50px;
+            vertical-align  : top;
+        }
+        h2 {
+            display         : inline-block;
+            font-size       : 25px;
+            line-height     : 48px;
+            margin-bottom   : 0;
+            margin-left     : 15px;
+            text-transform  : capitalize;
+        }
+    }
+    .navbar-nav{
+        li{
+            &.nav-item{
+                > a.nav-link{
+                    font-weight: 600 !important;
+
+                    @include resp($medium){color: #7f7f7f !important;}
+                }
+            }
+        }
+    }
+    &.navbar-shrink{
+            box-shadow: 0 0 12px rgba(0, 0, 0,.25);
+
+       /*  .navbar-nav > li.nav-item > a.nav-link.active, #mainNav .navbar-nav > li.nav-item > a.nav-link:focus.active{
+            color: #fff !important;
+            background: #31aefe !important;
+            border-radius: 3px;
+
+            @include resp($medium){
+                background: #fff !important;
+                color: #31aefe !important;
+            }
+        } */
+    }
+    button.navbar-toggler{
+        border: 0;
+        &:focus{
+            outline: 0;
+        }
+    }
+
+}
+
+header{
+    height: 100vh;
+
+    &.masthead{
+        .header-text{
+            bottom      : 0;
+            position    : absolute;
+            
+            h1{
+                display     : block;
+                font-size   : 50px;
+                font-size   : calc(2.0vh + 2.0vw);
+                font-weight : 400;
+                margin      : 0 auto;
+                text-align  : center;
+                width       : 80%;
+            }
+            .tag-line {
+                font-family : $theme-font;
+                font-size   : 20px;
+                font-weight : 500;
+
+                @include resp($medium){font-size: 16px;}
+                @include resp($mini){font-size: 14px;}
+            }
+        }
+    }
+}
+
+section#about-us{
+
+    .section-desc{
+        color: #6c757d;
+        @include resp($medium)  {text-align : justify;}
+        @include resp($small)   {font-size  : 14px;}
+    }
+
+    .service-box{
+
+        @include resp($micro)   {margin-top: 2rem !important;}
+
+        .icon-container{
+            height  : 100px;
+            width   : 100px;
+            
+            border          : 3px solid #31aefe;
+            border-radius   : 50%;
+            display         : block;
+            margin          : 0 auto;
+            margin-bottom   : 40px;
+
+            @include resp($medium)  {@include transform(scale(.9));}
+            @include resp($small)   {margin-bottom: 25px;}
+    
+            .icon{
+                height  : 75px;
+                width   : 75px;
+                
+                background-size     : cover; 
+                display             : block;
+                margin              : 0 auto;
+                margin-top          : 12px;
+                
+                &.top{
+                    background-image    : url('./../img/about-us-top.png');
+                }
+                &.bottom{
+                    background-image    : url('./../img/about-us-bottom.png');
+                }
+                
+                &.pat-man{
+                    background-position : -7px -2px;
+                }
+                &.pat-com{
+                    background-position : -72px -2px;
+                }
+                &.treatment{
+                    background-position : -149px -2px;
+                }
+                &.pri-msg{
+                    background-position : -216px -2px;
+                }
+                
+                &.hos-man{
+                    background-position : -7px -2px;
+                }
+                &.schedules{
+                    background-position: -76px 0px;
+                }
+                &.discharge{
+                    background-position : -149px -2px;
+                }
+                &.daily-care{
+                    background-position : -219px -2px;
+                }
+            }
+        }
+
+        h3.title{
+            color   : #424242;
+            height  : 70px;
+
+            @include resp($medium)  { font-size: 25px; margin-bottom: 0 !important;}
+            @include resp($small)   { font-size: 22px; height: 45px;}
+            @include resp($micro)   { font-size: 20px;}
+        }
+        p.content {
+            font-size: 15px;
+
+            @include resp($medium){text-align: justify;}
+            @include resp($micro){font-size: 14px;}
+        }
+    }
+}
+
+section#mission{
+    background: url('../img/banner.png');
+    background-attachment   : fixed;
+    background-repeat       : no-repeat;
+    background-size         : cover;
+    color       : white;
+
+    hr{
+        border-color: white;
+    }
+    .value-item{
+        padding: 20px 0;
+        .icon{
+            width: 50px;
+            height: 50px;
+            margin: 0 auto;
+            border          : 2px solid white;
+            border-radius   : 50%;
+
+            i.fa{
+                font-size       : 22px;
+                margin: 0 auto;
+                height: 100%;
+                width: 100%;
+                vertical-align: middle;
+                padding-top: 12px;
+            }
+        }
+        .content{
+            p{
+                margin: 15px 0 0;
+            }
+        }
+    }
+}
+
+section#privacy-policy{
+    p.content{
+        color: #6c757d;
+    }
+}
+
+
+section#contact-us{
+    background  : #31aefe;
+    color       : white;
+
+    hr{
+        border-color: white;
+    }
+    .contact-form{
+
+        @include resp($mini)    {   padding: 40px;}
+        @include resp($micro)   {   padding: 40px 20px;}
+
+        input,
+        textarea,
+        input::placeholder,
+        textarea::placeholder
+        {
+            background: rgba(39, 139, 203,.5);
+            border-color: rgba(39, 139, 203,.5);
+            color: rgba(255,255,255,.6);
+            font-size: 14px;
+            resize: none;
+
+
+            @include transition(.3s);
+
+            &:focus{
+                background: rgba(39, 139, 203,.9);
+                border-color: rgba(39, 139, 203,.9);
+                color: rgba(255,255,255,.8);
+                box-shadow: 0 0 0;
+            }
+        }
+        input{
+            height: 50px;
+
+            @include resp($medium)  {height: 45px;}
+            @include resp($micro)   {height: 40px;}
+        }
+
+        button.submit{
+            background      : #06ed62;
+            border-radius   : 3px;
+            font-weight     : 600;
+            height          : 50px;
+            text-transform  : capitalize;
+            width           : 100%;
+            
+            @include transition(.3s);
+
+            @include resp($micro){font-size: 14px; height: 40px;}
+
+            &:hover{
+                background: #05c753 !important;
+            }
+        }
+    }
+
+    .contact-info{
+        padding: 0 35px;
+
+        .contact-item{
+            border-bottom   : 2px solid rgba(255,255,255,.4);
+            padding         : 20px 15px;
+
+            @include resp($medium){padding: 15px;};
+            .icon{
+                font-size: 25px;
+            }
+            .text{
+                margin-top: 15px;
+
+                a{
+                    color       : rgba(255,255,255,.8);
+                    font-size   : 18px;
+                    
+                    @include transition(.3s);
+
+                    @include resp($medium)  {font-size: 16px;}
+                    @include resp($micro)   {font-size: 14px;}
+                    
+                    &:hover{
+                        text-decoration : none;
+                        color           : rgba(255,255,255,1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+footer{
+    background: #404040;
+    padding: 50px;
+
+    @include resp($mini){padding: 30px 0};
+
+    .col-12{
+        @include resp($micro){padding: 0;};
+    }
+    .links{
+        padding: 5px;
+
+        a{
+            color: rgba(255,255,255,.6);
+            display: inline-block;
+
+            @include resp($mini)    {   font-size: 15px;    }
+            @include resp($micro)   {   font-size: 14px; padding: 4px;}
+
+            &:hover{
+                color: rgba(255,255,255,.8);
+            }
+        }
+
+    }
+    .copy{
+        padding: 5px;
+        color: rgba(255,255,255,.6);
+
+        @include resp($mini)    {   font-size: 15px;}
+        @include resp($micro)   {   font-size: 13px; padding: 0;}
+    }
+}

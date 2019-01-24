@@ -1,0 +1,387 @@
+<?php
+namespace App\Shell\Task;
+
+use Cake\Console\Shell;
+use Cake\Controller\ComponentRegistry;
+use App\Controller\Component\FirebaseComponent;
+use Cake\ORM\TableRegistry;
+
+class EmployeeScheduleTask extends Shell
+{
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadModel('Employees');
+        $this->loadModel('EmployeesSchedules');
+        $this->loadModel('HospitalsEmployees');
+        $this->loadModel('ServiceTeams');
+        $this->Firebase = new FirebaseComponent(new ComponentRegistry());
+    }
+
+    public function changeEmployeeTeams()
+    {
+        $employeeLists = $this->EmployeesSchedules->find('all')->toArray();
+        if(!empty($employeeLists)) {
+            foreach ($employeeLists as $key => $val) {
+                
+                $timezone = !empty($val->timezone) ? $val->timezone : date_default_timezone_get(); 
+                 
+                $schedule = json_decode($val->schedule, true);
+                $consult_schedule = json_decode($val->consult_schedule, true);
+                
+                $date = date("Y-m-d");
+                $previousDate = date('Y-m-d', strtotime('-1 day'));
+                
+                if(!empty($schedule)) {
+                    
+                    date_default_timezone_set($timezone);
+                    
+                    $result = array_filter($schedule, function ($val) use ($date, $previousDate) {
+                        $compareDate = \DateTime::createFromFormat('m-d-Y', $val);
+                        $utime = strtotime($compareDate->format('Y-m-d'));
+                        return $utime >= strtotime($previousDate) && $utime <= strtotime($date);
+                    }, ARRAY_FILTER_USE_KEY);
+                    
+                    if (! empty($result)) {
+                        $flag = 0;
+                        foreach ($result as $r_key => $r_val) {
+                            $compareDate = \DateTime::createFromFormat('m-d-Y', $r_key);
+                            
+                            if($previousDate == $compareDate->format('Y-m-d')) {
+                                foreach ($r_val as $previous_key => $previous_val) {
+                                    //pr($previous_val); die;
+                                    $previousTime = explode('-', $previous_val['time']);
+                                    
+                                    $previousStartTime = date('H:i', strtotime(substr($previousTime[0], 0, -1) . ':00 ' . substr($previousTime[0], -1) . 'm'));
+                                    $previousEndTime = date('H:i', strtotime(substr($previousTime[1], 0, -1) . ':00 ' . substr($previousTime[1], -1) . 'm'));
+                                    
+                                    if($previousStartTime > $previousEndTime) {
+                                        // This means schedule is next day shift
+                                        $r_val[0] = [
+                                            'service_team' =>  $previous_val['service_team'],
+                                            'time' => $previous_val['time']
+                                        ];
+                                    } else {
+                                        $flag = 1;
+                                    }
+                                }
+                                if($flag) {
+                                    continue;
+                                }
+                            }
+                            
+                            foreach ($r_val as $v_key => $v_val) {
+                                if (! empty($v_val['time'])) {
+                                    
+                                    $time = explode('-', $v_val['time']);
+                                    
+                                    $startTime = date('H:i', strtotime(substr($time[0], 0, -1) . ':00 ' . substr($time[0], -1) . 'm'));
+                                    $endTime = date('H:i', strtotime(substr($time[1], 0, -1) . ':00 ' . substr($time[1], -1) . 'm'));
+                                    
+                                    $currentTime = date('H:i');
+                                    
+                                    $employee = $this->Employees->find()->where(['id'=> $val->employee_id])->first();
+                                    if (strtotime(date("H:i", strtotime('+10 minutes'))) >= strtotime($startTime) && strtotime(date("H:i", strtotime('-10 minutes'))) <= strtotime($startTime)) {
+                                        $teamDetail = $this->ServiceTeams->saveNewServiceTeam($val->hospital_id, $v_val['service_team']);
+                                        
+                                        if (! empty($teamDetail)) {
+                                            $this->HospitalsEmployees->deleteAll([
+                                                'employee_id' => $val->employee_id,
+                                                'hospital_id' => $val->hospital_id
+                                            ]);
+                                            
+                                            $data = [
+                                                'employee_id' => $val->employee_id,
+                                                'hospital_id' => $val->hospital_id,
+                                                'service_team_id' => $teamDetail['id']
+                                            ];
+                                            
+                                            $hospitalEmployee = $this->HospitalsEmployees->newEntity($data);
+                                            
+                                            $this->HospitalsEmployees->save($hospitalEmployee);
+                                            
+                                            $val->updated_at = date('Y-m-d');
+                                            $this->EmployeesSchedules->save($val);
+                                        }
+                                        
+                                        if(!empty($employee)) {
+                                            $employee->availability_status = 1;
+                                            $employee->working_time = $v_val['time'];
+                                            $employee->dirty('modified', true);
+                                            $this->Employees->save($employee);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                if(!empty($consult_schedule)) {
+                    date_default_timezone_set($timezone);
+                    $consultResult = array_filter($consult_schedule, function ($val) use ($date, $previousDate) {
+                        $compareDate = \DateTime::createFromFormat('m-d-Y', $val);
+                        $utime = strtotime($compareDate->format('Y-m-d'));
+                        return $utime >= strtotime($previousDate) && $utime <= strtotime($date);
+                    }, ARRAY_FILTER_USE_KEY);
+                    
+                    if (! empty($consultResult)) {
+                        $cFlag = 0;
+                        $departments = TableRegistry::get('Departments');
+                        
+                        foreach ($consultResult as $c_key => $c_val) {
+                            unset($c_val['service_team']);
+                            
+                            $compareDate = \DateTime::createFromFormat('m-d-Y', $c_key);
+                            
+                            if($previousDate == $compareDate->format('Y-m-d')) {
+                                foreach ($c_val as $previous_key => $previous_val) {
+                                    //pr($previous_val); die;
+                                    $previousTime = explode('-', $previous_val['time']);
+                            
+                                    $previousStartTime = date('H:i', strtotime(substr($previousTime[0], 0, -1) . ':00 ' . substr($previousTime[0], -1) . 'm'));
+                                    $previousEndTime = date('H:i', strtotime(substr($previousTime[1], 0, -1) . ':00 ' . substr($previousTime[1], -1) . 'm'));
+                            
+                                    if($previousStartTime > $previousEndTime) {
+                                        // This means schedule is next day shift
+                                        $c_val[0] = [
+                                            'department' => $previous_val['department'],
+                                            'subdepartment' => $previous_val['subdepartment'],
+                                            //'time' => '0a-'.$previousTime[1],
+                                            'time' => $previous_val['time'],
+                                            'is_first_call' => $previous_val['is_first_call'],
+                                            'is_attending' => $previous_val['is_attending'],
+                                        ];
+                                    } else {
+                                        $cFlag = 1;
+                                    }
+                                }
+                                if($cFlag) {
+                                    continue;
+                                }
+                            }
+                            
+                            foreach ($c_val as $v_key => $v_val) {
+                                // change status of employee
+                                
+                                if (! empty($v_val['time'])) {
+                                    $time = explode('-', $v_val['time']);
+                                    
+                                    $startTime = date('H:i', strtotime(substr($time[0], 0, -1) . ':00 ' . substr($time[0], -1) . 'm'));
+                                    $endTime = date('H:i', strtotime(substr($time[1], 0, -1) . ':00 ' . substr($time[1], -1) . 'm'));
+                                    
+                                    $currentTime = date('H:i');
+                                   
+                                    $employee = $this->Employees->find()->where(['id'=> $val->employee_id])->first();
+                                    if (strtotime(date("H:i", strtotime('+10 minutes'))) >= strtotime($startTime) && strtotime(date("H:i", strtotime('-10 minutes'))) <= strtotime($startTime)) {
+                                        if(!empty($employee)) {
+                                            if(!empty($v_val['department']) && !empty($v_val['subdepartment'])) {
+                                                $departmentData = $departments->getDepartment($v_val['department']);
+                                                
+                                                $employee->department = !empty($departmentData['name']) ? $departmentData['name'] : '';
+                                                $employee->department_short = !empty($departmentData['short_name']) ? $departmentData['short_name'] : '';
+                                                $employee->sub_department = $v_val['subdepartment'];
+                                            }
+                                            
+                                            $employee->is_consult = 1;
+                                            $employee->consult_working_time = $v_val['time'];
+                                            $employee->is_first_call = $v_val['is_first_call'];
+                                            $employee->is_attending = $v_val['is_attending'];
+                                            $employee->consult_availability_status = 1;
+                                            $employee->dirty('modified', true);
+                                            $this->Employees->save($employee);
+                                        }
+                                        $val->updated_at = date('Y-m-d');
+                                        $this->EmployeesSchedules->save($val);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    // Off user when working time over
+    public function offEmployeeSchedule() {
+        
+        $employeeLists = $this->EmployeesSchedules->find()
+            ->contain('Employees')
+            ->where([
+                'Employees.status' => 1, 
+                'OR'=> [
+                    "Employees.availability_status" => 1,
+                    "Employees.consult_availability_status" => 1
+                ]
+            ])
+            ->toArray();
+            
+        if(!empty($employeeLists)) {
+            foreach ($employeeLists as $key => $val) {
+        
+                $timezone = !empty($val->timezone) ? $val->timezone : date_default_timezone_get();
+                 
+                $schedule = json_decode($val->schedule, true);
+                $consult_schedule = json_decode($val->consult_schedule, true);
+        
+                $date = date("Y-m-d");
+                $previousDate = date('Y-m-d', strtotime('-1 day'));
+        
+                if(!empty($schedule)) {
+        
+                    date_default_timezone_set($timezone);
+        
+                    $result = array_filter($schedule, function ($val) use ($date, $previousDate) {
+                        $compareDate = \DateTime::createFromFormat('m-d-Y', $val);
+                        $utime = strtotime($compareDate->format('Y-m-d'));
+                        return $utime >= strtotime($previousDate) && $utime <= strtotime($date);
+                    }, ARRAY_FILTER_USE_KEY);
+                    
+                    if (! empty($result)) {
+                        $flag = 0;
+                        foreach ($result as $r_key => $r_val) {
+                            $compareDate = \DateTime::createFromFormat('m-d-Y', $r_key);
+    
+                            if($previousDate == $compareDate->format('Y-m-d')) {
+                                foreach ($r_val as $previous_key => $previous_val) {
+                                    //pr($previous_val); die;
+                                    $previousTime = explode('-', $previous_val['time']);
+    
+                                    $previousStartTime = date('H:i', strtotime(substr($previousTime[0], 0, -1) . ':00 ' . substr($previousTime[0], -1) . 'm'));
+                                    $previousEndTime = date('H:i', strtotime(substr($previousTime[1], 0, -1) . ':00 ' . substr($previousTime[1], -1) . 'm'));
+    
+                                    if($previousStartTime > $previousEndTime) {
+                                        // This means schedule is next day shift
+                                        $r_val[0] = [
+                                            'service_team' =>  $previous_val['service_team'],
+                                            //'time' => '0a-'.$previousTime[1]
+                                            'time' => $previous_val['time']
+                                        ];
+                                    } else {
+                                        $flag = 1;
+                                    }
+                                }
+                                if($flag) {
+                                    continue;
+                                }
+                            }
+    
+                            foreach ($r_val as $v_key => $v_val) {
+                                if (! empty($v_val['time'])) {
+                                    $time = explode('-', $v_val['time']);
+    
+                                    $startTime = date('H:i', strtotime(substr($time[0], 0, -1) . ':00 ' . substr($time[0], -1) . 'm'));
+                                    $endTime = date('H:i', strtotime(substr($time[1], 0, -1) . ':00 ' . substr($time[1], -1) . 'm'));
+    
+                                    $currentTime = date('H:i');
+    
+                                    $employee = $val->employee;
+                                    
+                                    if(strtotime($endTime) >= strtotime(date("H:i")) && strtotime($endTime) <= strtotime(date("H:i", strtotime('+10 minutes')))) {
+                                        if(!empty($employee)) {
+                                            $employee->availability_status = 0;
+                                            $employee->working_time = '';
+                                            $employee->dirty('modified', true);
+                                            $this->Employees->save($employee);
+                                            
+                                            /* $this->HospitalsEmployees->deleteAll([
+                                                'employee_id' => $val->employee_id,
+                                                'hospital_id' => $val->hospital_id
+                                            ]); */
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+        
+                if(!empty($consult_schedule)) {
+                    date_default_timezone_set($timezone);
+                    $consultResult = array_filter($consult_schedule, function ($val) use ($date, $previousDate) {
+                        $compareDate = \DateTime::createFromFormat('m-d-Y', $val);
+                        $utime = strtotime($compareDate->format('Y-m-d'));
+                        return $utime >= strtotime($previousDate) && $utime <= strtotime($date);
+                    }, ARRAY_FILTER_USE_KEY);
+        
+                    if (! empty($consultResult)) {
+                        $cFlag = 0;
+                        $departments = TableRegistry::get('Departments');
+    
+                        foreach ($consultResult as $c_key => $c_val) {
+                            unset($c_val['service_team']);
+                            
+                            $compareDate = \DateTime::createFromFormat('m-d-Y', $c_key);
+    
+                            if($previousDate == $compareDate->format('Y-m-d')) {
+                                $i =0;
+                                foreach ($c_val as $previous_key => $previous_val) {
+                                    $previousTime = explode('-', $previous_val['time']);
+    
+                                    $previousStartTime = date('H:i', strtotime(substr($previousTime[0], 0, -1) . ':00 ' . substr($previousTime[0], -1) . 'm'));
+                                    $previousEndTime = date('H:i', strtotime(substr($previousTime[1], 0, -1) . ':00 ' . substr($previousTime[1], -1) . 'm'));
+                                    
+                                    if($previousStartTime > $previousEndTime) {
+                                        // This means schedule is next day shift
+                                        //pr($previous_val);
+                                        $cFlag = 0;
+                                        $c_val[$i] = [
+                                            'department' => $previous_val['department'],
+                                            'subdepartment' => $previous_val['subdepartment'],
+                                            'time' => $previous_val['time'],
+                                            'is_first_call' => $previous_val['is_first_call'],
+                                            'is_attending' => $previous_val['is_attending'],
+                                        ];
+                                    } else {
+                                        $cFlag = 1;
+                                    }
+                                    $i++;
+                                }
+                                
+                                if($cFlag) {
+                                    continue;
+                                }
+                            }
+                           
+                            foreach ($c_val as $v_key => $v_val) {
+                                // change status of employee
+    
+                                if (! empty($v_val['time'])) {
+                                    $time = explode('-', $v_val['time']);
+    
+                                    $startTime = date('H:i', strtotime(substr($time[0], 0, -1) . ':00 ' . substr($time[0], -1) . 'm'));
+                                    $endTime = date('H:i', strtotime(substr($time[1], 0, -1) . ':00 ' . substr($time[1], -1) . 'm'));
+    
+                                    $currentTime = date('H:i');
+                                     
+                                    $employee = $val->employee;
+                                    
+                                    if(strtotime($endTime) >= strtotime(date("H:i")) && strtotime($endTime) <= strtotime(date("H:i", strtotime('+10 minutes')))) {
+                                        if(!empty($employee)) {
+                                            $employee->is_consult = 0;
+                                            $employee->working_time = '';
+                                            $employee->is_first_call = 0;
+                                            $employee->is_attending = 0;
+                                            $employee->consult_availability_status = 0;
+                                            $employee->dirty('modified', true);
+                                            $this->Employees->save($employee);
+                                            
+                                            /* $this->HospitalsEmployees->deleteAll([
+                                                'employee_id' => $val->employee_id,
+                                                'hospital_id' => $val->hospital_id
+                                            ]); */
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+?>
